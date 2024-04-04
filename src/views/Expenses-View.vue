@@ -15,23 +15,28 @@
         severity="contrast"
         class="w-5 h-2rem"
         icon="pi pi-plus"
+        @click="openDialog = true"
       />
     </section>
 
     <div class="divider w-full mt-5">
       <div class="w-full bg-gray-200"></div>
     </div>
+
+    <AddNewExpensesDialog v-if="openDialog" @close-dialog="openDialog = false" />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { ref, watch } from 'vue'
-import Button from 'primevue/button'
 import dayjs from 'dayjs'
+import Button from 'primevue/button'
+import AddNewExpensesDialog from '@/components/Dialogs/AddNewExpense-Dialog.vue'
 
 const date = ref()
 const disabledInput: Ref<boolean> = ref(false)
+const openDialog: Ref<boolean> = ref(false)
 </script>
 
 <style scoped lang="scss">
