@@ -13,7 +13,7 @@
         raised
         label="Add new expense"
         severity="contrast"
-        class="w-5 h-2rem"
+        class="w-5 h-2rem text-900 font-semibold"
         icon="pi pi-plus"
         @click="openDialog = true"
       />
@@ -29,13 +29,10 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { ref, watch } from 'vue'
-import dayjs from 'dayjs'
+import { ref } from 'vue'
 import Button from 'primevue/button'
 import AddNewExpensesDialog from '@/components/Dialogs/AddNewExpense-Dialog.vue'
 
-const date = ref()
-const disabledInput: Ref<boolean> = ref(false)
 const openDialog: Ref<boolean> = ref(false)
 </script>
 
@@ -54,7 +51,7 @@ const openDialog: Ref<boolean> = ref(false)
 }
 
 :deep(.p-button) {
-  background-color: black !important;
+  background-color: rgb(193, 193, 193) !important;
   border: none;
 }
 </style>

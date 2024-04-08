@@ -41,6 +41,32 @@
           </template>
         </Dropdown>
       </div>
+
+      <div class="expense-amount">
+        <p class="pt-2 pb-1 my-0 font-medium">Expense amount:</p>
+        <InputNumber v-model="expenseAmount" inputId="integeronly" class="w-full" />
+      </div>
+
+      <div class="expense-date">
+        <p class="pt-2 pb-1 my-0 font-medium">Expense date:</p>
+        <Calendar
+          v-model="expenseDate"
+          class="w-full"
+          :manualInput="false"
+          :minDate="minDate"
+          :maxDate="maxDate"
+        />
+      </div>
+
+      <div class="w-full center mt-8 pb-2">
+        <Button
+          raised
+          label="Add new expense"
+          class="font-medium px-3 py-1 bg-teal-200 text-900 border-transparent create-btn"
+          severity="info"
+          @click="() => {}"
+        />
+      </div>
     </div>
   </Dialog>
   <Toast />
@@ -52,14 +78,24 @@ import { ref } from 'vue'
 import { options } from '@/components/Dialogs/expenses-categories'
 import Dialog from 'primevue/dialog'
 import InputText from 'primevue/inputtext'
+import InputNumber from 'primevue/inputnumber'
 import Dropdown from 'primevue/dropdown'
+import Calendar from 'primevue/calendar'
+import Button from 'primevue/button'
 import ExpenseCategoryIcon from '@/components/ExpenseCategoryIcon.vue'
 
 const emit = defineEmits(['close-dialog', 'displayToast'])
 
 const displayDialog: Ref<boolean> = ref(true)
 const expenseName: Ref<string> = ref('')
+const expenseAmount: Ref<number | null> = ref(null)
+const expenseDate: Ref<string> = ref('')
 const expenseCategory: Ref<string> = ref('')
+const minDate = ref()
+const maxDate = ref()
+
+minDate.value = new Date('2024-04-08')
+maxDate.value = new Date('2024-04-14')
 
 function closeDialog() {
   emit('close-dialog')
