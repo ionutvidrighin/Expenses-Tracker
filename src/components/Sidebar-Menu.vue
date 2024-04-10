@@ -7,7 +7,7 @@
         :id="entry.id"
         :title="entry.title"
         :entryIcon="entry.icon"
-        :date="entry.date"
+        :date="entry.stringDate"
         :amount="entry.expensesAmount"
         :expensesCount="entry.expensesCount"
         @click="navigate(entry.id)"

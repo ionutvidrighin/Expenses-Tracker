@@ -64,6 +64,7 @@
 </template>
 
 <script setup lang="ts">
+import type { ToastColor } from '@/utils/globalTypes'
 import type { IWeeklyExpenses } from '@/stores/types/expenses-store'
 import type { Ref } from 'vue'
 import { ref } from 'vue'
@@ -78,8 +79,6 @@ import Calendar from 'primevue/calendar'
 import Button from 'primevue/button'
 import SelectedIcon from '@/components/ExpensesEntryIcons/Selected-Icon.vue'
 import ExpensesIconsContainer from '@/components/ExpensesEntryIcons/Expenses-Icons-Container.vue'
-
-type ToastColor = 'success' | 'info' | 'warn' | 'error' | 'secondary' | 'contrast' | undefined
 
 const emit = defineEmits(['close-dialog', 'displayToast'])
 
@@ -149,10 +148,12 @@ const handleCreateNewEntry = async () => {
     icon: selectedIconName.value!,
     expensesCount: 0,
     expensesAmount: '',
-    date: entryDate
+    stringDate: entryDate,
+    startDate: expensesDates.value[0],
+    endDate: expensesDates.value[1]
   }
 
-  const entryExists = weeklyExpensesStore.list.some((element) => element.date === entryDate)
+  const entryExists = weeklyExpensesStore.list.some((element) => element.stringDate === entryDate)
   if (entryExists) {
     displayToast('error', 'You already have an entry for this period')
     return

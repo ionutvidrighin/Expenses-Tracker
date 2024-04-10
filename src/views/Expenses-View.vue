@@ -8,7 +8,7 @@
       <div class="bg-blue-500"></div>
     </div>
 
-    <section class="add-new-expense w-full mt-5 center">
+    <section class="add-new-expense w-full mt-4 center">
       <Button
         raised
         label="Add new expense"
@@ -19,8 +19,11 @@
       />
     </section>
 
-    <div class="divider w-full mt-5">
-      <div class="w-full bg-gray-200"></div>
+    <div class="divider w-full mt-5 p-2 bg-white shadow-2 border-round-md">
+      <div class="w-full flex justify-content-between">
+        <p class="m-0">hello</p>
+        <p class="m-0">sadsd</p>
+      </div>
     </div>
 
     <AddNewExpensesDialog v-if="openDialog" @close-dialog="openDialog = false" />
