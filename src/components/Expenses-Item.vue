@@ -29,7 +29,7 @@
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import SelectedIcon from '@/components/ExpensesEntryIcons/Selected-Icon.vue'
+import SelectedIcon from '@/components/ExpensesEntryIcons/SelectedIcon.vue'
 
 const props = defineProps({
   id: { type: String, default: '', required: true },

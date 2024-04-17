@@ -1,5 +1,5 @@
 <template>
-  <div class="expenses-view bg-teal-100 w-full p-3">
+  <div class="expenses-view bg-teal-100 w-full py-3 px-1">
     <section class="total-expenses w-full">
       <p class="m-0 text-900 text-5xl font-semibold text-center">4.520,00 RON</p>
     </section>
@@ -19,12 +19,7 @@
       />
     </section>
 
-    <div class="divider w-full mt-5 p-2 bg-white shadow-2 border-round-md">
-      <div class="w-full flex justify-content-between">
-        <p class="m-0">hello</p>
-        <p class="m-0">sadsd</p>
-      </div>
-    </div>
+    <ExpensesList />
 
     <AddNewExpensesDialog v-if="openDialog" @close-dialog="openDialog = false" />
   </div>
@@ -34,6 +29,7 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 import Button from 'primevue/button'
+import ExpensesList from '@/components/ExpensesList.vue'
 import AddNewExpensesDialog from '@/components/Dialogs/AddNewExpense-Dialog.vue'
 
 const openDialog: Ref<boolean> = ref(false)
@@ -54,7 +50,7 @@ const openDialog: Ref<boolean> = ref(false)
 }
 
 :deep(.p-button) {
-  background-color: rgb(193, 193, 193) !important;
+  background-color: rgb(210, 210, 210) !important;
   border: none;
 }
 </style>

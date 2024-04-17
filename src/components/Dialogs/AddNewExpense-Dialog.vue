@@ -7,7 +7,7 @@
     header="Add new expense"
     :style="{ width: '30rem' }"
     :pt="{
-      root: { class: 'border-none bg-white p-0 h-30rem' },
+      root: { class: 'border-none bg-white p-0 h-25rem' },
       header: { class: 'pl-4 pr-2 py-2 surface-200 text-900' },
       content: { class: 'p-0' },
       mask: {
@@ -16,12 +16,7 @@
     }"
   >
     <div class="bg-white px-3 w-full dialog-content">
-      <div class="expense-name">
-        <p class="pt-2 pb-1 my-0 font-medium">Expense name:</p>
-        <InputText type="text" v-model="expenseName" class="w-full" />
-      </div>
-
-      <div class="expense-category w-full">
+      <div class="expense-category w-full mt-3 mb-1">
         <p class="pt-2 pb-1 my-0 font-medium">Expense category:</p>
         <Dropdown
           v-model="expenseCategory"
@@ -42,7 +37,7 @@
         </Dropdown>
       </div>
 
-      <div class="expense-amount">
+      <div class="expense-amount mb-1">
         <p class="pt-2 pb-1 my-0 font-medium">Expense amount:</p>
         <InputNumber v-model="expenseAmount" inputId="minmaxfraction" class="w-full" />
       </div>
@@ -58,7 +53,7 @@
         />
       </div>
 
-      <div class="w-full center mt-8 pb-2">
+      <div class="w-full center mt-6 pb-2">
         <Button
           raised
           label="Add new expense"
@@ -99,7 +94,6 @@ const toast = useToast()
 const route = useRoute()
 
 const displayDialog: Ref<boolean> = ref(true)
-const expenseName: Ref<string> = ref('')
 const expenseAmount: Ref<number | null> = ref(null)
 const expenseDate: Ref<string> = ref('')
 const expenseCategory = ref(null)
@@ -119,11 +113,6 @@ const displayToast = (toastColor: ToastColor, message: string) => {
 }
 
 const handleAddNewExpense = () => {
-  if (!expenseName.value || expenseName.value === '') {
-    displayToast('error', 'Please provide a name')
-    return
-  }
-
   if (!expenseCategory.value) {
     displayToast('error', 'Please select the category')
     return
@@ -142,13 +131,14 @@ const handleAddNewExpense = () => {
   const payload = {
     id: uuid(),
     weeklyExpenseId: route.params.id.toString(),
-    name: expenseName.value,
     amount: expenseAmount.value.toLocaleString('ro-RO'),
     category: expenseCategory.value,
     date: expenseDate.value
   }
 
-  expensesListStore.addNewExpense(payload)
+  console.log('payload', payload)
+
+  //expensesListStore.addNewExpense(payload)
 }
 
 function closeDialog() {

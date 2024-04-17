@@ -77,7 +77,7 @@ const openDialog: Ref<boolean> = ref(false)
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background: rgb(109, 109, 109);
+      background: rgb(201, 201, 201);
       border-radius: 10px;
     }
 
