@@ -18,7 +18,7 @@
       <Button
         @click="openDialog = true"
         class="ml-4 bg-teal-200 text-color font-semibold"
-        label="Add new entry"
+        label="Add weekly expenses"
         icon="pi pi-plus-circle"
         :pt="{
           root: { class: 'px-3 py-1' },

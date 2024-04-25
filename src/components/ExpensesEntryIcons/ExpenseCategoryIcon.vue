@@ -4,7 +4,7 @@
       <Avatar
         :image="icon"
         size="large"
-        shape="circle"
+        shape="square"
         :pt="{
           root: { class: 'p-1' },
           image: { class: 'w-full h-full' }
@@ -28,7 +28,7 @@ const props = defineProps({
 const icons: any = {
   groceries: import('@/assets/main-icons/groceries.png'),
   shopping: import('@/assets/main-icons/shopping.png'),
-  onlineShopping: import('@/assets/main-icons/online-shopping.png'),
+  ['online-shopping']: import('@/assets/main-icons/online-shopping.png'),
   restaurants: import('@/assets/main-icons/restaurants.png'),
   gym: import('@/assets/main-icons/gym.png'),
   phone: import('@/assets/main-icons/phone.png'),
@@ -36,12 +36,12 @@ const icons: any = {
   google: import('@/assets/main-icons/google.png'),
   wifi: import('@/assets/main-icons/wifi.png'),
   invoice: import('@/assets/main-icons/invoice.png'),
-  gasPump: import('@/assets/main-icons/gas-pump.png'),
-  carService: import('@/assets/main-icons/car-service.png'),
-  carParking: import('@/assets/main-icons/car-parking.png'),
-  carWash: import('@/assets/main-icons/car-parking.png'),
+  ['gas-pump']: import('@/assets/main-icons/gas-pump.png'),
+  ['car-service']: import('@/assets/main-icons/car-service.png'),
+  ['car-parking']: import('@/assets/main-icons/car-parking.png'),
+  ['car-wash']: import('@/assets/main-icons/car-wash.png'),
   holiday: import('@/assets/main-icons/holiday.png'),
-  freeTime: import('@/assets/main-icons/free-time.png'),
+  ['free-time']: import('@/assets/main-icons/free-time.png'),
   other: import('@/assets/main-icons/other.png')
 }
 

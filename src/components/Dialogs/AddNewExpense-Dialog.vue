@@ -70,6 +70,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import type { ToastColor } from '@/utils/globalTypes'
+import type { IExpenseItem } from '@/stores/types/expenses-store'
 import { ref, onMounted } from 'vue'
 import { options } from '@/components/Dialogs/expenses-categories'
 import { useToast } from 'primevue/usetoast'
@@ -77,14 +78,13 @@ import { useRoute } from 'vue-router'
 import { useWeeklyExpenses } from '@/stores/weekly-expenses-store'
 import { useExpensesListStore } from '@/stores/expenses-list-store'
 import { v4 as uuid } from 'uuid'
-import dayjs from 'dayjs'
 import Dialog from 'primevue/dialog'
-import InputText from 'primevue/inputtext'
 import InputNumber from 'primevue/inputnumber'
 import Dropdown from 'primevue/dropdown'
 import Calendar from 'primevue/calendar'
 import Button from 'primevue/button'
 import ExpenseCategoryIcon from '@/components/ExpenseCategoryIcon.vue'
+import dayjs from 'dayjs'
 
 const emit = defineEmits(['close-dialog', 'displayToast'])
 
@@ -99,6 +99,9 @@ const expenseDate: Ref<string> = ref('')
 const expenseCategory = ref(null)
 const minDate = ref()
 const maxDate = ref()
+
+const abc = dayjs().set('hour', 7).set('minute', 10).set('second', 10)
+console.log(dayjs(abc).format())
 
 onMounted(() => {
   const expenseId = route.params.id
@@ -128,17 +131,18 @@ const handleAddNewExpense = () => {
     return
   }
 
-  const payload = {
+  const formatDate = dayjs(expenseDate.value).set('hour', 7).set('minute', 10).set('second', 10)
+
+  const payload: IExpenseItem = {
     id: uuid(),
     weeklyExpenseId: route.params.id.toString(),
     amount: expenseAmount.value.toLocaleString('ro-RO'),
     category: expenseCategory.value,
-    date: expenseDate.value
+    date: dayjs(formatDate).format(),
+    dateString: dayjs(formatDate).format()
   }
 
-  console.log('payload', payload)
-
-  //expensesListStore.addNewExpense(payload)
+  expensesListStore.addNewExpense(payload)
 }
 
 function closeDialog() {

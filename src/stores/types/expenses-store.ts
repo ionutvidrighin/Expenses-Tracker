@@ -22,6 +22,7 @@ export interface IExpenseItem {
     value: string
     label: string
   }
+  dateString: string
   date: string
 }
 

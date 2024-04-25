@@ -50,7 +50,7 @@ const openDialog: Ref<boolean> = ref(false)
 }
 
 :deep(.p-button) {
-  background-color: rgb(210, 210, 210) !important;
+  background-color: #cae0e0 !important;
   border: none;
 }
 </style>
