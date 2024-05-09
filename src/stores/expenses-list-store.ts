@@ -13,6 +13,10 @@ export const useExpensesListStore = defineStore('expensesListStore', {
   actions: {
     addNewExpense(expense: IExpenseItem) {
       this.expenses.push(expense)
+    },
+    deleteExpenseById(expenseId: string) {
+      const updatedList = this.expenses.filter((element) => element.id !== expenseId)
+      this.expenses = updatedList
     }
   }
 })

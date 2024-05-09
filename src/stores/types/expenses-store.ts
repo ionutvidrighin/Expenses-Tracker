@@ -16,7 +16,7 @@ export interface IWeeklyExpensesStore {
 export interface IExpenseItem {
   id: string
   weeklyExpenseId: string
-  amount: string
+  amount: number
   category: {
     icon: string
     value: string

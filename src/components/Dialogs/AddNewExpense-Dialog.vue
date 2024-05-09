@@ -39,7 +39,13 @@
 
       <div class="expense-amount mb-1">
         <p class="pt-2 pb-1 my-0 font-medium">Expense amount:</p>
-        <InputNumber v-model="expenseAmount" inputId="minmaxfraction" class="w-full" />
+        <InputNumber
+          v-model="expenseAmount"
+          inputId="minmaxfraction"
+          class="w-full"
+          :minFractionDigits="2"
+          :maxFractionDigits="2"
+        />
       </div>
 
       <div class="expense-date">
@@ -100,9 +106,6 @@ const expenseCategory = ref(null)
 const minDate = ref()
 const maxDate = ref()
 
-const abc = dayjs().set('hour', 7).set('minute', 10).set('second', 10)
-console.log(dayjs(abc).format())
-
 onMounted(() => {
   const expenseId = route.params.id
   const expenseItemData = weeklyExpensesStore.getExpensebyId(expenseId as string)
@@ -136,13 +139,14 @@ const handleAddNewExpense = () => {
   const payload: IExpenseItem = {
     id: uuid(),
     weeklyExpenseId: route.params.id.toString(),
-    amount: expenseAmount.value.toLocaleString('ro-RO'),
+    amount: expenseAmount.value,
     category: expenseCategory.value,
     date: dayjs(formatDate).format(),
     dateString: dayjs(formatDate).format()
   }
 
   expensesListStore.addNewExpense(payload)
+  closeDialog()
 }
 
 function closeDialog() {

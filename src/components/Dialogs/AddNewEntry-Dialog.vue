@@ -77,8 +77,8 @@ import Dialog from 'primevue/dialog'
 import InputText from 'primevue/inputtext'
 import Calendar from 'primevue/calendar'
 import Button from 'primevue/button'
-import SelectedIcon from '@/components/ExpensesEntryIcons/SelectedIcon.vue'
-import ExpensesIconsContainer from '@/components/ExpensesEntryIcons/Expenses-Icons-Container.vue'
+import SelectedIcon from '@/components/ExpenseEntry/SelectedIcon.vue'
+import ExpensesIconsContainer from '@/components/ExpenseEntry/Expenses-Icons-Container.vue'
 
 const emit = defineEmits(['close-dialog', 'displayToast'])
 

@@ -1,7 +1,7 @@
 <template>
   <div class="expenses-view bg-teal-100 w-full py-3 px-1">
     <section class="total-expenses w-full">
-      <p class="m-0 text-900 text-5xl font-semibold text-center">4.520,00 RON</p>
+      <p class="m-0 text-900 text-5xl font-semibold text-center">{{ totalAmount }} RON</p>
     </section>
 
     <div class="under-line w-full h-1rem center">
@@ -27,12 +27,37 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { ref } from 'vue'
+import { ref, watch, onMounted } from 'vue'
+import { useExpensesListStore } from '@/stores/expenses-list-store'
 import Button from 'primevue/button'
 import ExpensesList from '@/components/ExpensesList.vue'
 import AddNewExpensesDialog from '@/components/Dialogs/AddNewExpense-Dialog.vue'
 
+const expensesListStore = useExpensesListStore()
+
 const openDialog: Ref<boolean> = ref(false)
+const totalAmount: Ref<string> = ref('')
+
+const calculateAllExpenses = () => {
+  const amounts: number[] = []
+  expensesListStore.expenses.forEach((element) => {
+    amounts.push(element.amount)
+  })
+
+  const total = amounts.reduce((a, b) => a + b, 0)
+  totalAmount.value = total.toString()
+}
+
+onMounted(() => {
+  calculateAllExpenses()
+})
+
+watch(
+  () => expensesListStore.expenses.length,
+  () => {
+    calculateAllExpenses()
+  }
+)
 </script>
 
 <style scoped lang="scss">
